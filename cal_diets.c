@@ -16,11 +16,6 @@
 #define MAX_DIETS 100      			// Maximum number of diets
 #define MAX_FOOD_NAME_LEN 50		// Maximum length of the name of food
 
-// names and calories definition
-typedef struct{
-	char name[50];
-	int calories;
-} Diet;
 
 // list of diets 
 static Diet diet_list[MAX_DIETS];
@@ -32,6 +27,13 @@ static int diet_list_size = 0;
 */
 
 void loadDiets(const char* DIETFILEPATH) {
+	
+	FILE *fp=NULL;
+	char name[50];
+	int calories;
+	
+	fp=fopen("diets.txt", "r");
+	
     FILE *file = fopen(DIETFILEPATH, "r");
     if (file == NULL) {
         printf("There is no file for diets! \n");
@@ -39,7 +41,7 @@ void loadDiets(const char* DIETFILEPATH) {
     }
 
      // ToCode: to read a list of the diets from the given file
-    while (fscanf(FILE *file, "%s %d", &diet_list[diet_list_size].name, &diet_list[diet_list_size].calories)==2) {
+    while (fscanf(fp, "%s %d", name, calories)==2) {
     	diet_list_size++;
         if (diet_list_size >= MAX_DIETS){
         	break;
