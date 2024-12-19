@@ -52,9 +52,9 @@ void loadDiets(const char* DIETFILEPATH) {
 			int i;
 			for (i=0; i<MAX_FOOD_NAME_LEN-1; i++) {
 				s1[i]=s2[i];
-				if (s2[i]=='\0') break;
+				if (s2[i]=='\0') break; //stop when NULL char is encountered
 			}
-			s1[MAX_FOOD_NAME_LEN-1]='\0';
+			s1[MAX_FOOD_NAME_LEN-1]='\0'; //add NULL char at the end
 			
 			diet_list[diet_list_size].calories_intake=calories;
 			diet_list_size++;
