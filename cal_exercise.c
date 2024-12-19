@@ -34,7 +34,8 @@ void loadExercises(const char* EXERCISEFILEPATH) {
     }
 
     // ToCode: to read a list of the exercises from the given file
-    while ( ) {
+    
+    while () {
     	
         if (exercise_list_size >= MAX_EXERCISES){
         	break;
