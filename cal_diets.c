@@ -34,31 +34,30 @@ void loadDiets(const char* DIETFILEPATH) {
     }
 
      // ToCode: to read a list of the diets from the given file
-     
     char line[100];
     while (fgets(line, sizeof(line), file)) {
         if (diet_list_size >= MAX_DIETS){
-        	break;
-		}
-		
-		char food_name[MAX_FOOD_NAME_LEN];
-		int calories_intake;
-		
-		if (sscanf(line, "%s %d", food_name, &calories_intake)==2) {
-			char *s1=diet_list[diet_list_size].food_name;
-			char *s2=food_name;
-			
-			int i;
-			for (i=0; i<MAX_FOOD_NAME_LEN; i++) {
-				s1[i]=s2[i];
-				if (s2[i]=='\0') break; //stop when NULL char is encountered
-			}
-			s1[MAX_FOOD_NAME_LEN-1]='\0'; //add NULL char at the end
-			
-			diet_list[diet_list_size].calories_intake=calories_intake;
-			diet_list_size++;
-		}
-    }
+           break;
+      }
+      
+      char food_name[MAX_FOOD_NAME_LEN];
+      int calories_intake;
+      
+      if (sscanf(line, "%s %d", food_name, &calories_intake)==2) {
+        char *s1=diet_list[diet_list_size].food_name;
+        char *s2=food_name;
+         
+        int i;
+        for (i=0; i<MAX_FOOD_NAME_LEN; i++) {
+           s1[i]=s2[i];
+           if (s2[i]=='\0') break; //stop when NULL char is encountered
+        }
+        s1[MAX_FOOD_NAME_LEN-1]='\0'; //add NULL char at the end
+         
+        diet_list[diet_list_size].calories_intake=calories_intake;
+        diet_list_size++;
+    	}
+   }
     fclose(file);
 }
 
