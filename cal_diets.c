@@ -27,8 +27,7 @@ static int diet_list_size = 0;
 */
 
 void loadDiets(const char* DIETFILEPATH) {
-	
-    FILE *file = fopen(DIETFILEPATH, "r");
+	FILE *file = fopen(DIETFILEPATH, "r");
     if (file == NULL) {
         printf("There is no file for diets! \n");
         return;
@@ -43,20 +42,20 @@ void loadDiets(const char* DIETFILEPATH) {
 		}
 		
 		char food_name[MAX_FOOD_NAME_LEN];
-		int calories;
+		int calories_intake;
 		
-		if (sscanf(line, "%s %d", food_name, &calories)==2) {
+		if (sscanf(line, "%s %d", food_name, &calories_intake)==2) {
 			char *s1=diet_list[diet_list_size].food_name;
 			char *s2=food_name;
 			
 			int i;
-			for (i=0; i<MAX_FOOD_NAME_LEN-1; i++) {
+			for (i=0; i<MAX_FOOD_NAME_LEN; i++) {
 				s1[i]=s2[i];
 				if (s2[i]=='\0') break; //stop when NULL char is encountered
 			}
 			s1[MAX_FOOD_NAME_LEN-1]='\0'; //add NULL char at the end
 			
-			diet_list[diet_list_size].calories_intake=calories;
+			diet_list[diet_list_size].calories_intake=calories_intake;
 			diet_list_size++;
 		}
     }
@@ -109,12 +108,10 @@ void inputDiet(HealthData* health_data) {
     		char *s2=diet_list[choice-1].food_name;
     		
     		int i;
-    		for (i=0; i<MAX_FOOD_NAME_LEN-1; i++) {
-    			s1[i]=s2[i];
-    			if (s2[i]=='\0') break;
+    		for (i=0; i<MAX_FOOD_NAME_LEN-1 && *s2 !='\0'; i++) {
+    			s1[i]=*s2++;
 			}
-			s1[MAX_FOOD_NAME_LEN-1]='\0';
-			
+    		health_data->diet[health_data->diet_count].food_name[MAX_FOOD_NAME_LEN-1]='\0';
 			health_data->diet[health_data->diet_count].calories_intake=diet_list[choice-1].calories_intake;
 			health_data->diet_count++;
 	

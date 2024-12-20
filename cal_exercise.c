@@ -49,7 +49,7 @@ void loadExercises(const char* EXERCISEFILEPATH) {
 			char *s2=exercise_name;
 			
 			int i;
-			for(i=0; i<MAX_EXERCISE_NAME_LEN; i++) {
+			for (i=0; i<MAX_EXERCISE_NAME_LEN; i++) {
 				s1[i]=s2[i];
 				if (s2[i]=='\0') break; //stop when NULL char is encountered
 			}
@@ -80,7 +80,7 @@ void inputExercise(HealthData* health_data) {
     
     // ToCode: to provide the options for the exercises to be selected
     printf("The list of exercises: \n");
-    for(i=0; i<exercise_list_size; i++) {
+    for (i=0; i<exercise_list_size; i++) {
     	printf("%d. %s %d\n", i+1, exercise_list[i].exercise_name, exercise_list[i].calories_burned_per_minute);
 	}
 
@@ -120,8 +120,9 @@ void inputExercise(HealthData* health_data) {
     	if (health_data->exercise_count<MAX_EXERCISES) {
     		char *s1=health_data->exercises[health_data->exercise_count].exercise_name;
     		char *s2=exercise_list[choice-1].exercise_name;
+    		
     		int i;
-    		for(int i=0; i<MAX_EXERCISE_NAME_LEN-1 && *s2 !='\0'; i++) {
+    		for(i=0; i<MAX_EXERCISE_NAME_LEN-1 && *s2 !='\0'; i++) {
     			s1[i]=*s2++;
 			}
 			health_data->exercises[health_data->exercise_count].exercise_name[MAX_EXERCISE_NAME_LEN-1]='\0';
