@@ -129,6 +129,7 @@ void inputExercise(HealthData* health_data) {
 			health_data->exercise_count++;
 			
 			health_data->total_calories_burned+=exercise_list[choice-1].calories_burned_per_minute * duration;
+			
 		}
 	}
 }
