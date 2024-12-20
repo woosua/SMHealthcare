@@ -44,7 +44,7 @@ void loadDiets(const char* DIETFILEPATH) {
 		char food_name[MAX_FOOD_NAME_LEN];
 		int calories_intake;
 		
-		if (sscanf(line, "%s %d" , food_name, &calories_intake)==2) {
+		if (sscanf(line, "%s %d", food_name, &calories_intake)==2) {
 			char *s1=diet_list[diet_list_size].food_name;
 			char *s2=food_name;
 			
